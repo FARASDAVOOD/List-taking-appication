@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux"
+import { store } from './componets/redux/store';
+import axios from 'axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+axios.interceptors.request.use(request=>{
+console.log("moneey");
+return request
+})
+
+axios.interceptors.response.use(response => {
+  console.log(response,"ok");
+})
+
+root.render(  
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+    <App /></Provider>
   </React.StrictMode>
 );
 
